@@ -12,8 +12,6 @@ angular.module('Alphabet', [])
             }
         }
     });
-
-    $urlRouterProvider.otherwise('/tab/dash');
 }])
 
 .controller('AlphabetCtrl', ['$rootScope', '$scope', function($rootScope, $scope){

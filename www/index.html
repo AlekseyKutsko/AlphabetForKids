@@ -10,13 +10,18 @@
         <script type="text/javascript" src="js/angular.min.js"></script>
         <script type="text/javascript" src="js/angular-ui-router.min.js"></script>
         <script type="text/javascript" src="js/angular-animate.min.js"></script>
+        <script type="text/javascript" src="js/angular-translate.min.js"></script>
+        <script type="text/javascript" src="js/angular-translate-loader-url.min.js"></script>
+        <script type="text/javascript" src="js/fastclick.js"></script>
         <script type="text/javascript" src="project/app.js"></script>
+        <script type="text/javascript" src="project/directives/directives.js"></script>
         <script type="text/javascript" src="project/alphabet/AlphabetCtrl.js"></script>
+        <script type="text/javascript" src="project/setting/SettingCtrl.js"></script>
         <title>AlphabetForKids</title>
     </head>
     <body>
-        <div ng-app="AlphabetForKids">
-            <div ui-view="app-view"></div>
+        <div ng-app="AlphabetForKids" class="height100">
+            <div ui-view="app-view" class="height100"></div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
     </body>

@@ -1,11 +1,13 @@
 /**
  * Created by Aleksey on 30.03.2015.
  */
-angular.module('AlphabetForKids', ['ui.router', 'ngAnimate', 'Alphabet'])
+angular.module('AlphabetForKids', ['ui.router', 'pascalprecht.translate', 'ngAnimate', 'Alphabet', 'Setting', 'Directives'])
 
-.run(function(){
+.run(['$rootScope', function($rootScope){
+    //init fast click (remove delay 300ms)
+    FastClick.attach(document.body);
+
     document.addEventListener("deviceready", onDeviceReady, false);
-
     function onDeviceReady(){
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -16,9 +18,13 @@ angular.module('AlphabetForKids', ['ui.router', 'ngAnimate', 'Alphabet'])
             StatusBar.styleDefault();
         }
     }
-})
 
-.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
+    $rootScope.AppData = {
+        languageApp: 'ru'
+    }
+}])
+
+.config(['$stateProvider', '$urlRouterProvider', '$translateProvider', function($stateProvider, $urlRouterProvider, $translateProvider){
     $stateProvider.state('main', {
         url: '/main',
         views: {
@@ -28,9 +34,28 @@ angular.module('AlphabetForKids', ['ui.router', 'ngAnimate', 'Alphabet'])
         }
     });
 
+    $translateProvider.useLoader('loaderLanguage', {});
+    $translateProvider.preferredLanguage('ru');
     $urlRouterProvider.otherwise('/main');
 }])
 
-.controller('MenuCtrl', ['$rootScope', '$scope', function($rootScope, $scope){
-
+.controller('MenuCtrl', ['$rootScope', '$scope', '$translate', function($rootScope, $scope, $translate){
+    //change language application
+    $scope.changeLanguage = function (key) {
+        $translate.use(key);
+    };
 }])
+
+.factory('loaderLanguage',['$http', '$q', function ($http, $q) {
+    return function (options) {
+        var deferred = $q.defer();
+        $http.get('locale-' + options.key + '.json')
+        .success(function (data) {
+            deferred.resolve(data);
+        })
+        .error(function () {
+            deferred.reject(options.key);
+        });
+        return deferred.promise;
+    };
+}]);
