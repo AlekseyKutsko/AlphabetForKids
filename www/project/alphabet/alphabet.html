@@ -1,9 +1,14 @@
 <ng-view ng-controller="AlphabetCtrl" class="height100">
     <div class="content-box height100">
-        <button ui-sref="main"><<---</button>
-        <div>
-            <h1>{{'ALPHABET' | translate}}</h1>
-
+        <button ng-click="backMenu()"><<---</button>
+        <div class="wrapper-alphabet">
+            <ul>
+                <li class="letter" ng-repeat="letter in alphaBet">
+                    <img id="{{letter.letter}}" play-sound curr-sound="alphaBetScope.currentSound" ng-src="{{letter.src}}"
+                         alt="{{letter.letter}}" />
+                </li>
+                <div class="clear"></div>
+            </ul>
         </div>
     </div>
 </ng-view>

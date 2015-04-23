@@ -1,7 +1,7 @@
 /**
  * Created by Aleksey on 30.03.2015.
  */
-angular.module('AlphabetForKids', ['ui.router', 'pascalprecht.translate', 'ngAnimate', 'Alphabet', 'Setting', 'Directives'])
+angular.module('AlphabetForKids', ['ui.router', 'pascalprecht.translate', 'ngAnimate', 'ngAudio', 'Alphabet', 'Directives'])
 
 .run(['$rootScope', function($rootScope){
     //init fast click (remove delay 300ms)
@@ -12,6 +12,8 @@ angular.module('AlphabetForKids', ['ui.router', 'pascalprecht.translate', 'ngAni
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }
+        //locked orientation screen
+        screen.lockOrientation('landscape');
 
         if (window.StatusBar) {
             // org.apache.cordova.statusbar required
@@ -20,12 +22,14 @@ angular.module('AlphabetForKids', ['ui.router', 'pascalprecht.translate', 'ngAni
     }
 
     $rootScope.AppData = {
-        languageApp: 'ru'
+        languageApp: 'ru',
+        volumeApp: 0.5
     }
 }])
 
 .config(['$stateProvider', '$urlRouterProvider', '$translateProvider', function($stateProvider, $urlRouterProvider, $translateProvider){
     $stateProvider.state('main', {
+        cache: false,
         url: '/main',
         views: {
             'app-view': {

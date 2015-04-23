@@ -5,34 +5,64 @@ body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#E4E4E4;
-    background-attachment:fixed;
-    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    font-size:12px;
-    height:100%;
-    width:100%;
+    background-color: #65FF73;
+    background-attachment: fixed;
+    font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    height: 100%;
+    width: 100%;
 }
 
 .content-box{
     position: relative;
 }
 
-.content-box div{
+.content-box div.wrapper{
     position: absolute;
     top: 40%;
     left: 50%;
     height: 140px;
     width: 180px;
-    margin: -70px 0 0 -90px;
+    padding: 30px 20px;
+    margin: -100px 0 0 -110px;
 }
 
-.content-box div h1{
+.modal{
+    opacity: 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    height: 140px;
+    width: 180px;
+    padding: 15px 20px 30px 20px;
+    margin: -60px 0 0 -110px;
+    background: blue;
+    border-radius: 15px;
+    -webkit-transition: .4s opacity ease-out;
+}
+
+.modal div{
+    position: relative;
+    height: 100%;
+}
+
+.modal div button{
+    position: absolute;
+    bottom: 10px;
+    left: 63px;
+}
+
+.modal.show{
+    opacity: 1;
+}
+
+.content-box div.wrapper h1{
     font-size: 26px;
     text-align: center;
     margin-bottom: 10px;
 }
 
-.content-box div ul li{
+.content-box div.wrapper ul li{
     padding: 10px 15px;
     font-size: 20px;
     margin-bottom: 5px;
@@ -42,7 +72,6 @@ body {
 .menu-button{
     text-decoration: none;
     text-align: center;
-    padding: 11px 32px;
     border: solid 1px #004F72;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -90,7 +119,100 @@ body {
     background-image: -webkit-linear-gradient(top, #9652b5 0%, #3e2378 100%);
     background-image: linear-gradient(top, #9652b5 0% ,#3e2378 100%);
 }
-/* Landscape layout (with min-width) */
-@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
 
+.wrapper-alphabet{
+    margin: 0 auto;
+    padding: 35px;
+}
+
+.wrapper-alphabet .letter{
+    float: left;
+    width: 65px;
+    height: 78px;
+    border: 1px solid;
+    border-radius: 10px;
+    margin: 3px;
+}
+
+.wrapper-alphabet .letter img{
+    width: 100%;
+}
+
+.letter.tap-letter{
+    -webkit-animation: tapLetter .5s linear;
+    animation: tapLetter .5s linear;
+}
+
+.clear{
+    clear: both;
+}
+/* Media query */
+@media screen and (min-width:480px) {
+    .wrapper-alphabet{
+        width: 365px;
+    }
+}
+
+@media screen and (min-width:568px) {
+    .wrapper-alphabet{
+        width: 440px;
+    }
+}
+
+@media screen and (min-width:667px) {
+    .wrapper-alphabet{
+        width: 515px;
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .wrapper-alphabet{
+        width: auto;
+    }
+}
+
+/* Animation */
+@-webkit-keyframes tapLetter {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    25% {
+        -webkit-transform: rotate(50deg);
+        transform: rotate(50deg);
+    }
+    50% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    75% {
+        -webkit-transform: rotate(-50deg);
+        transform: rotate(-50deg);
+    }
+    100% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+}
+@keyframes tapLetter {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    25% {
+        -webkit-transform: rotate(50deg);
+        transform: rotate(50deg);
+    }
+    50% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    75% {
+        -webkit-transform: rotate(-50deg);
+        transform: rotate(-50deg);
+    }
+    100% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
 }
